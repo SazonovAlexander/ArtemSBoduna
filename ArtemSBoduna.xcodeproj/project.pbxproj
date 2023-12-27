@@ -7,23 +7,55 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0049CC9D2B3B94AA00E26AE3 /* ClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049CC9C2B3B94AA00E26AE3 /* ClientViewController.swift */; };
+		0049CCA02B3B951A00E26AE3 /* ClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049CC9F2B3B951A00E26AE3 /* ClientService.swift */; };
+		0049CCA22B3B957200E26AE3 /* LivingRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049CCA12B3B957200E26AE3 /* LivingRoomService.swift */; };
+		0049CCA52B3B978500E26AE3 /* LivingRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049CCA42B3B978500E26AE3 /* LivingRoomViewController.swift */; };
+		0049CCA72B3B993700E26AE3 /* LivingRoomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049CCA62B3B993700E26AE3 /* LivingRoomCellView.swift */; };
+		0049CCA92B3BA23200E26AE3 /* SelectLivingRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049CCA82B3BA23200E26AE3 /* SelectLivingRoomViewController.swift */; };
+		0049CCAB2B3BA37E00E26AE3 /* ClientViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049CCAA2B3BA37E00E26AE3 /* ClientViewCell.swift */; };
 		005BA7C32B3B8D48003E40B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7C22B3B8D48003E40B2 /* AppDelegate.swift */; };
 		005BA7C52B3B8D48003E40B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7C42B3B8D48003E40B2 /* SceneDelegate.swift */; };
-		005BA7C72B3B8D48003E40B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7C62B3B8D48003E40B2 /* ViewController.swift */; };
-		005BA7CA2B3B8D48003E40B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 005BA7C82B3B8D48003E40B2 /* Main.storyboard */; };
 		005BA7CC2B3B8D4A003E40B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 005BA7CB2B3B8D4A003E40B2 /* Assets.xcassets */; };
 		005BA7CF2B3B8D4A003E40B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 005BA7CD2B3B8D4A003E40B2 /* LaunchScreen.storyboard */; };
+		005BA7DF2B3B8FCF003E40B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7D92B3B8FCF003E40B2 /* Constants.swift */; };
+		005BA7E02B3B8FCF003E40B2 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7DA2B3B8FCF003E40B2 /* URLRequest+Extension.swift */; };
+		005BA7E32B3B8FCF003E40B2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7DD2B3B8FCF003E40B2 /* NetworkError.swift */; };
+		005BA7E42B3B8FCF003E40B2 /* URLSesson+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7DE2B3B8FCF003E40B2 /* URLSesson+Extension.swift */; };
+		005BA7E72B3B9016003E40B2 /* TabBatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7E62B3B9016003E40B2 /* TabBatController.swift */; };
+		005BA7EA2B3B90FB003E40B2 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7E92B3B90FB003E40B2 /* Client.swift */; };
+		005BA7EC2B3B9134003E40B2 /* LivingRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7EB2B3B9134003E40B2 /* LivingRoom.swift */; };
+		005BA7EE2B3B91D0003E40B2 /* Staff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7ED2B3B91D0003E40B2 /* Staff.swift */; };
+		005BA7F02B3B9244003E40B2 /* ProcedureRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7EF2B3B9244003E40B2 /* ProcedureRoom.swift */; };
+		005BA7F22B3B9286003E40B2 /* ClientProcedure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7F12B3B9286003E40B2 /* ClientProcedure.swift */; };
+		005BA7F42B3B92FF003E40B2 /* Procedure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7F32B3B92FF003E40B2 /* Procedure.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0049CC9C2B3B94AA00E26AE3 /* ClientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewController.swift; sourceTree = "<group>"; };
+		0049CC9F2B3B951A00E26AE3 /* ClientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientService.swift; sourceTree = "<group>"; };
+		0049CCA12B3B957200E26AE3 /* LivingRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivingRoomService.swift; sourceTree = "<group>"; };
+		0049CCA42B3B978500E26AE3 /* LivingRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivingRoomViewController.swift; sourceTree = "<group>"; };
+		0049CCA62B3B993700E26AE3 /* LivingRoomCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivingRoomCellView.swift; sourceTree = "<group>"; };
+		0049CCA82B3BA23200E26AE3 /* SelectLivingRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLivingRoomViewController.swift; sourceTree = "<group>"; };
+		0049CCAA2B3BA37E00E26AE3 /* ClientViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewCell.swift; sourceTree = "<group>"; };
 		005BA7BF2B3B8D48003E40B2 /* ArtemSBoduna.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtemSBoduna.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		005BA7C22B3B8D48003E40B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		005BA7C42B3B8D48003E40B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		005BA7C62B3B8D48003E40B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		005BA7C92B3B8D48003E40B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		005BA7CB2B3B8D4A003E40B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		005BA7CE2B3B8D4A003E40B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		005BA7D02B3B8D4A003E40B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		005BA7D92B3B8FCF003E40B2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		005BA7DA2B3B8FCF003E40B2 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
+		005BA7DD2B3B8FCF003E40B2 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		005BA7DE2B3B8FCF003E40B2 /* URLSesson+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSesson+Extension.swift"; sourceTree = "<group>"; };
+		005BA7E62B3B9016003E40B2 /* TabBatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBatController.swift; sourceTree = "<group>"; };
+		005BA7E92B3B90FB003E40B2 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		005BA7EB2B3B9134003E40B2 /* LivingRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivingRoom.swift; sourceTree = "<group>"; };
+		005BA7ED2B3B91D0003E40B2 /* Staff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Staff.swift; sourceTree = "<group>"; };
+		005BA7EF2B3B9244003E40B2 /* ProcedureRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureRoom.swift; sourceTree = "<group>"; };
+		005BA7F12B3B9286003E40B2 /* ClientProcedure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProcedure.swift; sourceTree = "<group>"; };
+		005BA7F32B3B92FF003E40B2 /* Procedure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Procedure.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +69,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0049CC9B2B3B949400E26AE3 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				0049CC9C2B3B94AA00E26AE3 /* ClientViewController.swift */,
+				0049CCAA2B3BA37E00E26AE3 /* ClientViewCell.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		0049CC9E2B3B950800E26AE3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0049CC9F2B3B951A00E26AE3 /* ClientService.swift */,
+				0049CCA12B3B957200E26AE3 /* LivingRoomService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		0049CCA32B3B975D00E26AE3 /* LivingRoom */ = {
+			isa = PBXGroup;
+			children = (
+				0049CCA42B3B978500E26AE3 /* LivingRoomViewController.swift */,
+				0049CCA62B3B993700E26AE3 /* LivingRoomCellView.swift */,
+				0049CCA82B3BA23200E26AE3 /* SelectLivingRoomViewController.swift */,
+			);
+			path = LivingRoom;
+			sourceTree = "<group>";
+		};
 		005BA7B62B3B8D47003E40B2 = {
 			isa = PBXGroup;
 			children = (
@@ -56,15 +116,59 @@
 		005BA7C12B3B8D48003E40B2 /* ArtemSBoduna */ = {
 			isa = PBXGroup;
 			children = (
-				005BA7C22B3B8D48003E40B2 /* AppDelegate.swift */,
-				005BA7C42B3B8D48003E40B2 /* SceneDelegate.swift */,
-				005BA7C62B3B8D48003E40B2 /* ViewController.swift */,
-				005BA7C82B3B8D48003E40B2 /* Main.storyboard */,
+				0049CC9E2B3B950800E26AE3 /* Services */,
+				0049CCA32B3B975D00E26AE3 /* LivingRoom */,
+				0049CC9B2B3B949400E26AE3 /* Client */,
+				005BA7E82B3B904B003E40B2 /* Models */,
+				005BA7E52B3B8FFC003E40B2 /* TabBar */,
+				005BA7D82B3B8FCF003E40B2 /* Helpers */,
+				005BA7D62B3B8FA2003E40B2 /* App */,
 				005BA7CB2B3B8D4A003E40B2 /* Assets.xcassets */,
 				005BA7CD2B3B8D4A003E40B2 /* LaunchScreen.storyboard */,
 				005BA7D02B3B8D4A003E40B2 /* Info.plist */,
 			);
 			path = ArtemSBoduna;
+			sourceTree = "<group>";
+		};
+		005BA7D62B3B8FA2003E40B2 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				005BA7C22B3B8D48003E40B2 /* AppDelegate.swift */,
+				005BA7C42B3B8D48003E40B2 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		005BA7D82B3B8FCF003E40B2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				005BA7D92B3B8FCF003E40B2 /* Constants.swift */,
+				005BA7DA2B3B8FCF003E40B2 /* URLRequest+Extension.swift */,
+				005BA7DD2B3B8FCF003E40B2 /* NetworkError.swift */,
+				005BA7DE2B3B8FCF003E40B2 /* URLSesson+Extension.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		005BA7E52B3B8FFC003E40B2 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				005BA7E62B3B9016003E40B2 /* TabBatController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		005BA7E82B3B904B003E40B2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				005BA7E92B3B90FB003E40B2 /* Client.swift */,
+				005BA7EB2B3B9134003E40B2 /* LivingRoom.swift */,
+				005BA7ED2B3B91D0003E40B2 /* Staff.swift */,
+				005BA7EF2B3B9244003E40B2 /* ProcedureRoom.swift */,
+				005BA7F12B3B9286003E40B2 /* ClientProcedure.swift */,
+				005BA7F32B3B92FF003E40B2 /* Procedure.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +231,6 @@
 			files = (
 				005BA7CF2B3B8D4A003E40B2 /* LaunchScreen.storyboard in Resources */,
 				005BA7CC2B3B8D4A003E40B2 /* Assets.xcassets in Resources */,
-				005BA7CA2B3B8D48003E40B2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +241,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				005BA7C72B3B8D48003E40B2 /* ViewController.swift in Sources */,
+				0049CCA72B3B993700E26AE3 /* LivingRoomCellView.swift in Sources */,
+				005BA7E02B3B8FCF003E40B2 /* URLRequest+Extension.swift in Sources */,
+				005BA7E32B3B8FCF003E40B2 /* NetworkError.swift in Sources */,
+				005BA7F22B3B9286003E40B2 /* ClientProcedure.swift in Sources */,
+				005BA7EE2B3B91D0003E40B2 /* Staff.swift in Sources */,
+				0049CCAB2B3BA37E00E26AE3 /* ClientViewCell.swift in Sources */,
+				005BA7E72B3B9016003E40B2 /* TabBatController.swift in Sources */,
+				0049CCA52B3B978500E26AE3 /* LivingRoomViewController.swift in Sources */,
 				005BA7C32B3B8D48003E40B2 /* AppDelegate.swift in Sources */,
+				005BA7EC2B3B9134003E40B2 /* LivingRoom.swift in Sources */,
+				0049CC9D2B3B94AA00E26AE3 /* ClientViewController.swift in Sources */,
 				005BA7C52B3B8D48003E40B2 /* SceneDelegate.swift in Sources */,
+				0049CCA22B3B957200E26AE3 /* LivingRoomService.swift in Sources */,
+				005BA7F02B3B9244003E40B2 /* ProcedureRoom.swift in Sources */,
+				005BA7DF2B3B8FCF003E40B2 /* Constants.swift in Sources */,
+				005BA7E42B3B8FCF003E40B2 /* URLSesson+Extension.swift in Sources */,
+				005BA7EA2B3B90FB003E40B2 /* Client.swift in Sources */,
+				0049CCA92B3BA23200E26AE3 /* SelectLivingRoomViewController.swift in Sources */,
+				005BA7F42B3B92FF003E40B2 /* Procedure.swift in Sources */,
+				0049CCA02B3B951A00E26AE3 /* ClientService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		005BA7C82B3B8D48003E40B2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				005BA7C92B3B8D48003E40B2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		005BA7CD2B3B8D4A003E40B2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -297,9 +409,9 @@
 				INFOPLIST_FILE = ArtemSBoduna/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -325,9 +437,9 @@
 				INFOPLIST_FILE = ArtemSBoduna/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
