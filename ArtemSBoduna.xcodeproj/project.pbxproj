@@ -14,6 +14,8 @@
 		0049CCA72B3B993700E26AE3 /* LivingRoomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049CCA62B3B993700E26AE3 /* LivingRoomCellView.swift */; };
 		0049CCA92B3BA23200E26AE3 /* SelectLivingRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049CCA82B3BA23200E26AE3 /* SelectLivingRoomViewController.swift */; };
 		0049CCAB2B3BA37E00E26AE3 /* ClientViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049CCAA2B3BA37E00E26AE3 /* ClientViewCell.swift */; };
+		0049CCAD2B3BB27F00E26AE3 /* StaffService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049CCAC2B3BB27E00E26AE3 /* StaffService.swift */; };
+		0049CCB02B3BB2CE00E26AE3 /* StaffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049CCAF2B3BB2CE00E26AE3 /* StaffViewController.swift */; };
 		005BA7C32B3B8D48003E40B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7C22B3B8D48003E40B2 /* AppDelegate.swift */; };
 		005BA7C52B3B8D48003E40B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7C42B3B8D48003E40B2 /* SceneDelegate.swift */; };
 		005BA7CC2B3B8D4A003E40B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 005BA7CB2B3B8D4A003E40B2 /* Assets.xcassets */; };
@@ -22,13 +24,26 @@
 		005BA7E02B3B8FCF003E40B2 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7DA2B3B8FCF003E40B2 /* URLRequest+Extension.swift */; };
 		005BA7E32B3B8FCF003E40B2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7DD2B3B8FCF003E40B2 /* NetworkError.swift */; };
 		005BA7E42B3B8FCF003E40B2 /* URLSesson+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7DE2B3B8FCF003E40B2 /* URLSesson+Extension.swift */; };
-		005BA7E72B3B9016003E40B2 /* TabBatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7E62B3B9016003E40B2 /* TabBatController.swift */; };
+		005BA7E72B3B9016003E40B2 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7E62B3B9016003E40B2 /* TabBarController.swift */; };
 		005BA7EA2B3B90FB003E40B2 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7E92B3B90FB003E40B2 /* Client.swift */; };
 		005BA7EC2B3B9134003E40B2 /* LivingRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7EB2B3B9134003E40B2 /* LivingRoom.swift */; };
 		005BA7EE2B3B91D0003E40B2 /* Staff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7ED2B3B91D0003E40B2 /* Staff.swift */; };
 		005BA7F02B3B9244003E40B2 /* ProcedureRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7EF2B3B9244003E40B2 /* ProcedureRoom.swift */; };
 		005BA7F22B3B9286003E40B2 /* ClientProcedure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7F12B3B9286003E40B2 /* ClientProcedure.swift */; };
 		005BA7F42B3B92FF003E40B2 /* Procedure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BA7F32B3B92FF003E40B2 /* Procedure.swift */; };
+		00881A592B3BB6FF00810027 /* StaffViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00881A582B3BB6FF00810027 /* StaffViewCell.swift */; };
+		00881A5B2B3BBBA100810027 /* ProcedureRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00881A5A2B3BBBA100810027 /* ProcedureRoomService.swift */; };
+		00881A5D2B3BBC1800810027 /* ProcedureRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00881A5C2B3BBC1800810027 /* ProcedureRoomViewController.swift */; };
+		00881A602B3BBC3800810027 /* ProcedureRoomViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00881A5F2B3BBC3800810027 /* ProcedureRoomViewCell.swift */; };
+		00881A622B3BC13600810027 /* ProcedureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00881A612B3BC13600810027 /* ProcedureService.swift */; };
+		00881A652B3BC28200810027 /* ProcedureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00881A642B3BC28200810027 /* ProcedureViewController.swift */; };
+		00881A672B3BC29200810027 /* ProcedureViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00881A662B3BC29200810027 /* ProcedureViewCell.swift */; };
+		00881A692B3BC30900810027 /* SelectProcedureRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00881A682B3BC30900810027 /* SelectProcedureRoomViewController.swift */; };
+		00881A6B2B3BC3D000810027 /* SelectStaffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00881A6A2B3BC3D000810027 /* SelectStaffViewController.swift */; };
+		00881A6D2B3BCB5900810027 /* ClientProcedureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00881A6C2B3BCB5900810027 /* ClientProcedureViewController.swift */; };
+		00881A6F2B3BCC0E00810027 /* ClientProcedureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00881A6E2B3BCC0E00810027 /* ClientProcedureService.swift */; };
+		00881A712B3BCD6B00810027 /* ClientProcedureViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00881A702B3BCD6B00810027 /* ClientProcedureViewCell.swift */; };
+		00881A732B3BCE3B00810027 /* SelectProcedureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00881A722B3BCE3B00810027 /* SelectProcedureViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +54,8 @@
 		0049CCA62B3B993700E26AE3 /* LivingRoomCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivingRoomCellView.swift; sourceTree = "<group>"; };
 		0049CCA82B3BA23200E26AE3 /* SelectLivingRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLivingRoomViewController.swift; sourceTree = "<group>"; };
 		0049CCAA2B3BA37E00E26AE3 /* ClientViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewCell.swift; sourceTree = "<group>"; };
+		0049CCAC2B3BB27E00E26AE3 /* StaffService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffService.swift; sourceTree = "<group>"; };
+		0049CCAF2B3BB2CE00E26AE3 /* StaffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffViewController.swift; sourceTree = "<group>"; };
 		005BA7BF2B3B8D48003E40B2 /* ArtemSBoduna.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtemSBoduna.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		005BA7C22B3B8D48003E40B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		005BA7C42B3B8D48003E40B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,13 +66,26 @@
 		005BA7DA2B3B8FCF003E40B2 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
 		005BA7DD2B3B8FCF003E40B2 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		005BA7DE2B3B8FCF003E40B2 /* URLSesson+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSesson+Extension.swift"; sourceTree = "<group>"; };
-		005BA7E62B3B9016003E40B2 /* TabBatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBatController.swift; sourceTree = "<group>"; };
+		005BA7E62B3B9016003E40B2 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		005BA7E92B3B90FB003E40B2 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		005BA7EB2B3B9134003E40B2 /* LivingRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivingRoom.swift; sourceTree = "<group>"; };
 		005BA7ED2B3B91D0003E40B2 /* Staff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Staff.swift; sourceTree = "<group>"; };
 		005BA7EF2B3B9244003E40B2 /* ProcedureRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureRoom.swift; sourceTree = "<group>"; };
 		005BA7F12B3B9286003E40B2 /* ClientProcedure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProcedure.swift; sourceTree = "<group>"; };
 		005BA7F32B3B92FF003E40B2 /* Procedure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Procedure.swift; sourceTree = "<group>"; };
+		00881A582B3BB6FF00810027 /* StaffViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffViewCell.swift; sourceTree = "<group>"; };
+		00881A5A2B3BBBA100810027 /* ProcedureRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureRoomService.swift; sourceTree = "<group>"; };
+		00881A5C2B3BBC1800810027 /* ProcedureRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureRoomViewController.swift; sourceTree = "<group>"; };
+		00881A5F2B3BBC3800810027 /* ProcedureRoomViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureRoomViewCell.swift; sourceTree = "<group>"; };
+		00881A612B3BC13600810027 /* ProcedureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureService.swift; sourceTree = "<group>"; };
+		00881A642B3BC28200810027 /* ProcedureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureViewController.swift; sourceTree = "<group>"; };
+		00881A662B3BC29200810027 /* ProcedureViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureViewCell.swift; sourceTree = "<group>"; };
+		00881A682B3BC30900810027 /* SelectProcedureRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProcedureRoomViewController.swift; sourceTree = "<group>"; };
+		00881A6A2B3BC3D000810027 /* SelectStaffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStaffViewController.swift; sourceTree = "<group>"; };
+		00881A6C2B3BCB5900810027 /* ClientProcedureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProcedureViewController.swift; sourceTree = "<group>"; };
+		00881A6E2B3BCC0E00810027 /* ClientProcedureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProcedureService.swift; sourceTree = "<group>"; };
+		00881A702B3BCD6B00810027 /* ClientProcedureViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProcedureViewCell.swift; sourceTree = "<group>"; };
+		00881A722B3BCE3B00810027 /* SelectProcedureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProcedureViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +104,8 @@
 			children = (
 				0049CC9C2B3B94AA00E26AE3 /* ClientViewController.swift */,
 				0049CCAA2B3BA37E00E26AE3 /* ClientViewCell.swift */,
+				00881A6C2B3BCB5900810027 /* ClientProcedureViewController.swift */,
+				00881A702B3BCD6B00810027 /* ClientProcedureViewCell.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -83,6 +115,10 @@
 			children = (
 				0049CC9F2B3B951A00E26AE3 /* ClientService.swift */,
 				0049CCA12B3B957200E26AE3 /* LivingRoomService.swift */,
+				0049CCAC2B3BB27E00E26AE3 /* StaffService.swift */,
+				00881A5A2B3BBBA100810027 /* ProcedureRoomService.swift */,
+				00881A612B3BC13600810027 /* ProcedureService.swift */,
+				00881A6E2B3BCC0E00810027 /* ClientProcedureService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -95,6 +131,16 @@
 				0049CCA82B3BA23200E26AE3 /* SelectLivingRoomViewController.swift */,
 			);
 			path = LivingRoom;
+			sourceTree = "<group>";
+		};
+		0049CCAE2B3BB2C500E26AE3 /* Staff */ = {
+			isa = PBXGroup;
+			children = (
+				0049CCAF2B3BB2CE00E26AE3 /* StaffViewController.swift */,
+				00881A582B3BB6FF00810027 /* StaffViewCell.swift */,
+				00881A6A2B3BC3D000810027 /* SelectStaffViewController.swift */,
+			);
+			path = Staff;
 			sourceTree = "<group>";
 		};
 		005BA7B62B3B8D47003E40B2 = {
@@ -117,6 +163,9 @@
 			isa = PBXGroup;
 			children = (
 				0049CC9E2B3B950800E26AE3 /* Services */,
+				00881A632B3BC27100810027 /* Procedure */,
+				00881A5E2B3BBC1D00810027 /* ProcedureRoom */,
+				0049CCAE2B3BB2C500E26AE3 /* Staff */,
 				0049CCA32B3B975D00E26AE3 /* LivingRoom */,
 				0049CC9B2B3B949400E26AE3 /* Client */,
 				005BA7E82B3B904B003E40B2 /* Models */,
@@ -153,7 +202,7 @@
 		005BA7E52B3B8FFC003E40B2 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				005BA7E62B3B9016003E40B2 /* TabBatController.swift */,
+				005BA7E62B3B9016003E40B2 /* TabBarController.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -169,6 +218,26 @@
 				005BA7F32B3B92FF003E40B2 /* Procedure.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		00881A5E2B3BBC1D00810027 /* ProcedureRoom */ = {
+			isa = PBXGroup;
+			children = (
+				00881A5C2B3BBC1800810027 /* ProcedureRoomViewController.swift */,
+				00881A5F2B3BBC3800810027 /* ProcedureRoomViewCell.swift */,
+				00881A682B3BC30900810027 /* SelectProcedureRoomViewController.swift */,
+			);
+			path = ProcedureRoom;
+			sourceTree = "<group>";
+		};
+		00881A632B3BC27100810027 /* Procedure */ = {
+			isa = PBXGroup;
+			children = (
+				00881A642B3BC28200810027 /* ProcedureViewController.swift */,
+				00881A662B3BC29200810027 /* ProcedureViewCell.swift */,
+				00881A722B3BCE3B00810027 /* SelectProcedureViewController.swift */,
+			);
+			path = Procedure;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,19 +315,34 @@
 				005BA7E32B3B8FCF003E40B2 /* NetworkError.swift in Sources */,
 				005BA7F22B3B9286003E40B2 /* ClientProcedure.swift in Sources */,
 				005BA7EE2B3B91D0003E40B2 /* Staff.swift in Sources */,
+				00881A6D2B3BCB5900810027 /* ClientProcedureViewController.swift in Sources */,
+				0049CCB02B3BB2CE00E26AE3 /* StaffViewController.swift in Sources */,
+				00881A732B3BCE3B00810027 /* SelectProcedureViewController.swift in Sources */,
+				00881A622B3BC13600810027 /* ProcedureService.swift in Sources */,
+				00881A692B3BC30900810027 /* SelectProcedureRoomViewController.swift in Sources */,
 				0049CCAB2B3BA37E00E26AE3 /* ClientViewCell.swift in Sources */,
-				005BA7E72B3B9016003E40B2 /* TabBatController.swift in Sources */,
+				00881A6F2B3BCC0E00810027 /* ClientProcedureService.swift in Sources */,
+				005BA7E72B3B9016003E40B2 /* TabBarController.swift in Sources */,
 				0049CCA52B3B978500E26AE3 /* LivingRoomViewController.swift in Sources */,
+				00881A602B3BBC3800810027 /* ProcedureRoomViewCell.swift in Sources */,
 				005BA7C32B3B8D48003E40B2 /* AppDelegate.swift in Sources */,
+				00881A652B3BC28200810027 /* ProcedureViewController.swift in Sources */,
+				00881A6B2B3BC3D000810027 /* SelectStaffViewController.swift in Sources */,
+				00881A672B3BC29200810027 /* ProcedureViewCell.swift in Sources */,
 				005BA7EC2B3B9134003E40B2 /* LivingRoom.swift in Sources */,
 				0049CC9D2B3B94AA00E26AE3 /* ClientViewController.swift in Sources */,
+				00881A5B2B3BBBA100810027 /* ProcedureRoomService.swift in Sources */,
 				005BA7C52B3B8D48003E40B2 /* SceneDelegate.swift in Sources */,
 				0049CCA22B3B957200E26AE3 /* LivingRoomService.swift in Sources */,
 				005BA7F02B3B9244003E40B2 /* ProcedureRoom.swift in Sources */,
 				005BA7DF2B3B8FCF003E40B2 /* Constants.swift in Sources */,
+				0049CCAD2B3BB27F00E26AE3 /* StaffService.swift in Sources */,
+				00881A5D2B3BBC1800810027 /* ProcedureRoomViewController.swift in Sources */,
 				005BA7E42B3B8FCF003E40B2 /* URLSesson+Extension.swift in Sources */,
 				005BA7EA2B3B90FB003E40B2 /* Client.swift in Sources */,
 				0049CCA92B3BA23200E26AE3 /* SelectLivingRoomViewController.swift in Sources */,
+				00881A592B3BB6FF00810027 /* StaffViewCell.swift in Sources */,
+				00881A712B3BCD6B00810027 /* ClientProcedureViewCell.swift in Sources */,
 				005BA7F42B3B92FF003E40B2 /* Procedure.swift in Sources */,
 				0049CCA02B3B951A00E26AE3 /* ClientService.swift in Sources */,
 			);

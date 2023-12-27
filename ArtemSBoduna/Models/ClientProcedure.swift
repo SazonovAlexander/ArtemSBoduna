@@ -2,7 +2,7 @@ import Foundation
 
 
 struct ClientProcedureRequest: Codable {
-    let clientID, procedureID, count: Int
+    let clientId, procedureId, count: Int
 }
 
 

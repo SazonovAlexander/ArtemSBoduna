@@ -1,14 +1,14 @@
 import Foundation
 
 
-final class ClientService {
+final class ClientProcedureService {
     private let urlSession = URLSession.shared
     private var lastTask: URLSessionTask?
     
-    func fetchAllClient(page: Int, count: Int, param: String, completion: @escaping (Result<[ClientResponse], Error>) -> Void) {
+    func fetchProcedure(clientId: Int, completion: @escaping (Result<[ClientProcedureResponse], Error>) -> Void) {
         lastTask?.cancel()
-        let request = allClientRequest(page: page, count: count, fullName: param)
-        let task = urlSession.objectTask(for: request, completion: { (result: Result<[ClientResponse], Error>) in
+        let request = allClientProcedureRequest(clientId: clientId)
+        let task = urlSession.objectTask(for: request, completion: { (result: Result<[ClientProcedureResponse], Error>) in
             switch result {
             case .success(let client):
                 completion(.success(client))
@@ -20,10 +20,10 @@ final class ClientService {
         task.resume()
     }
     
-    func updateClient(clientId: Int, client: ClientRequest, completion: @escaping (Result<ClientResponse, Error>) -> Void) {
+    func updateClientProcedure(clientId: Int, procId: Int,client: ClientProcedureRequest, completion: @escaping (Result<ClientProcedureResponse, Error>) -> Void) {
         lastTask?.cancel()
-        let request = updateClientRequest(clientId: clientId, client: client)
-        let task = urlSession.objectTask(for: request, completion: { (result: Result<ClientResponse, Error>) in
+        let request = updateClientRequest(clientId: clientId, procedureId: procId, procClient: client)
+        let task = urlSession.objectTask(for: request, completion: { (result: Result<ClientProcedureResponse, Error>) in
             switch result {
             case .success(let client):
                 completion(.success(client))
@@ -35,10 +35,10 @@ final class ClientService {
         task.resume()
     }
     
-    func addClient(client: ClientRequest, completion: @escaping (Result<ClientResponse, Error>) -> Void) {
+    func addClientProcedure(client: ClientProcedureRequest, completion: @escaping (Result<ClientProcedureResponse, Error>) -> Void) {
         lastTask?.cancel()
-        let request = addClientRequest(client: client)
-        let task = urlSession.objectTask(for: request, completion: { (result: Result<ClientResponse, Error>) in
+        let request = addClientRequest(procClient: client)
+        let task = urlSession.objectTask(for: request, completion: { (result: Result<ClientProcedureResponse, Error>) in
             switch result {
             case .success(let client):
                 completion(.success(client))
@@ -50,9 +50,9 @@ final class ClientService {
         task.resume()
     }
     
-    func deleteClient(clientId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
+    func deleteClientProcedure(clientId: Int, procId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
         lastTask?.cancel()
-        let request = deleteClientRequest(clientId: clientId)
+        let request = deleteClientRequest(clientId: clientId, procedureId: procId)
         let task = urlSession.completeTask(for: request, completion: { (result: Result<Bool, Error>) in
             switch result {
             case .success(let complete):
@@ -64,62 +64,54 @@ final class ClientService {
         lastTask = task
         task.resume()
     }
-    
 }
 
-private extension ClientService {
+private extension ClientProcedureService {
     
-    func allClientRequest(page: Int, count: Int, fullName: String) -> URLRequest {
-        var path = "/clients"
-        if fullName != "" {
-            path += "/find?fullName=\(fullName)&"
-        }
-        else {
-            path += "?"
-        }
-        path += "page=\(page)&size=\(count)"
-        let request = URLRequest.makeHTTPRequest(
-            path: path,
-            httpMethod: "GET",
-            baseURL: DefaultBaseURL
-        )
-        return request
-    }
-    
-    func updateClientRequest(clientId: Int ,client: ClientRequest) -> URLRequest {
+    func updateClientRequest(clientId: Int , procedureId: Int, procClient: ClientProcedureRequest) -> URLRequest {
         var request = URLRequest.makeHTTPRequest(
-            path: "/clients/\(clientId)",
+            path: "/procedure/client/\(clientId)/\(procedureId)",
             httpMethod: "PUT",
             baseURL: DefaultBaseURL
         )
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        if let jsonData = try? JSONEncoder().encode(client) {
+        if let jsonData = try? JSONEncoder().encode(procClient) {
+            print(procClient)
             request.httpBody = jsonData
         }
         return request
     }
     
-    func addClientRequest(client: ClientRequest) -> URLRequest {
+    func addClientRequest(procClient: ClientProcedureRequest) -> URLRequest {
         var request = URLRequest.makeHTTPRequest(
-            path: "/clients",
+            path: "/procedure/client",
             httpMethod: "POST",
             baseURL: DefaultBaseURL
         )
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        if let jsonData = try? JSONEncoder().encode(client) {
+        if let jsonData = try? JSONEncoder().encode(procClient) {
             request.httpBody = jsonData
         }
         return request
     }
     
-    func deleteClientRequest(clientId: Int) -> URLRequest {
+    func deleteClientRequest(clientId: Int , procedureId: Int) -> URLRequest {
         let request = URLRequest.makeHTTPRequest(
-            path: "/clients/\(clientId)",
+            path: "/procedure/client/\(clientId)/\(procedureId)",
             httpMethod: "DELETE",
             baseURL: DefaultBaseURL
         )
         return request
     }
     
-    
+
+    func allClientProcedureRequest(clientId: Int) -> URLRequest {
+        let request = URLRequest.makeHTTPRequest(
+            path: "/client/procedure/\(clientId)",
+            httpMethod: "GET",
+            baseURL: DefaultBaseURL
+        )
+        return request
+    }
 }
+

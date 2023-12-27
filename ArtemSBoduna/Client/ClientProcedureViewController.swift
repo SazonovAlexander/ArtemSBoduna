@@ -1,34 +1,8 @@
 import UIKit
 
 
-final class ClientViewController: UIViewController {
+final class ClientProcedureViewController: UIViewController {
     //MARK: - Private Properties
-    
-    private let nameTextField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.textColor = .black
-        textField.backgroundColor = .white
-        textField.layer.cornerRadius = 20
-        textField.layer.masksToBounds = true
-        textField.placeholder = "ФИО"
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
-        textField.leftViewMode = .always
-        textField.clipsToBounds = true
-        return textField
-    }()
-    
-    private let searchButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Поиск", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 20
-        button.layer.masksToBounds = true
-        return button
-    }()
-    
     private let addButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -50,17 +24,15 @@ final class ClientViewController: UIViewController {
         return tableView
     }()
     
-    var cellDataSource: [ClientResponse] = []
-    private let clientService = ClientService()
-    private var selectedLivingRoom: LivingRoomResponse?
-    private var currentPage = 0
-    private let itemsPerPage = 20
+    var cellDataSource: [ClientProcedureResponse] = []
+    private let service = ClientProcedureService()
+    private var selectedProcedure: ProcedureResponse?
+    var client: ClientResponse?
     private var currentAlert: UIAlertController?
     private var inLoad = false
     private var isEnd = false {
         didSet {
             if isEnd == false {
-                currentPage = 0
                 cellDataSource = []
                 getClient()
             }
@@ -77,7 +49,7 @@ final class ClientViewController: UIViewController {
 
 
 //MARK: - Private Methods
-private extension ClientViewController {
+private extension ClientProcedureViewController {
     
     func setupView() {
         view.backgroundColor = .darkGray
@@ -90,18 +62,13 @@ private extension ClientViewController {
     
     func addAction() {
         addButton.addTarget(self, action: #selector(Self.didTapAddButton), for: .touchUpInside)
-        searchButton.addTarget(self, action: #selector(Self.searchWithFilter), for: .touchUpInside)
     }
     
-    @objc
-    func searchWithFilter() {
-        
-        isEnd = false
-    }
+   
     
     @objc
     func openSelect() {
-        let vc = SelectLivingRoomViewController()
+        let vc = SelectProcedureViewController()
         vc.delegate = self
         currentAlert?.present(vc, animated: true)
     }
@@ -111,31 +78,24 @@ private extension ClientViewController {
     func didTapAddButton() {
         let alert = UIAlertController(title: "Клиент", message: nil, preferredStyle: .alert)
         alert.addTextField { (textField) in
-            textField.placeholder = "ФИО"
+            textField.placeholder = "Количество"
         }
         alert.addTextField { (textField) in
-            textField.placeholder = "Номер телефона"
-        }
-        alert.addTextField { (textField) in
-            textField.placeholder = "Адрес"
-        }
-        alert.addTextField { (textField) in
-            textField.placeholder = "Комната"
+            textField.placeholder = "Процедура"
             textField.addTarget(self, action: #selector(Self.openSelect), for: .editingDidBegin)
         }
+        
         let save = UIAlertAction(title: "Сохранить", style: .default) { [weak alert, weak self] _ in
             if let self,
-               let name = alert?.textFields?[0].text,
-               let phone = alert?.textFields?[1].text,
-               let address = alert?.textFields?[2].text,
-               let room = selectedLivingRoom
+               let count = Int(alert?.textFields?.first?.text ?? "0"),
+                let procedure = selectedProcedure
             {
-                let client = ClientRequest(fullName: name, phoneNumber: phone, address: address, livingRoomId: room.id)
-                self.clientService.addClient(client: client, completion: { [weak self] result in
+                let cp = ClientProcedureRequest(clientId: client!.id, procedureId: procedure.id, count: count)
+                self.service.addClientProcedure(client: cp, completion: { [weak self] result in
                     guard let self else { return }
                     switch result {
                     case .success( _):
-                        selectedLivingRoom = nil
+                        selectedProcedure = nil
                         isEnd = false
                     case .failure(let error):
                         print(error.localizedDescription)
@@ -156,17 +116,11 @@ private extension ClientViewController {
     
     func getClient() {
         inLoad.toggle()
-        clientService.fetchAllClient(page: currentPage, count: itemsPerPage, param: nameTextField.text ?? "", completion: { [weak self] result in
+        service.fetchProcedure(clientId: client!.id, completion: { [weak self] result in
             guard let self else { return }
             switch result {
             case .success(let clients):
-                if clients.isEmpty {
-                    currentPage += 1
-                }
-                else {
-                    isEnd = true
-                }
-                self.cellDataSource.append(contentsOf: clients)
+                self.cellDataSource = clients
                 inLoad.toggle()
                 self.tableView.reloadData()
                 
@@ -181,39 +135,21 @@ private extension ClientViewController {
         })
     }
     
-    func updateCLient(client: ClientResponse) {
-        selectedLivingRoom = client.livingRoom
+    func updateCLient(cp: ClientProcedureResponse) {
         let alert = UIAlertController(title: "Клиент", message: nil, preferredStyle: .alert)
         alert.addTextField { (textField) in
-            textField.placeholder = "ФИО"
-            textField.text = client.fullName
-        }
-        alert.addTextField { (textField) in
-            textField.placeholder = "Номер телефона"
-            textField.text = client.phoneNumber
-        }
-        alert.addTextField { (textField) in
-            textField.placeholder = "Адрес"
-            textField.text = client.address
-        }
-        alert.addTextField { (textField) in
-            textField.placeholder = "Комната"
-            textField.addTarget(self, action: #selector(Self.openSelect), for: .editingDidBegin)
-            textField.text = "Номер: \(client.livingRoom.number)"
+            textField.placeholder = "Количество"
+            textField.text = "\(cp.count)"
         }
         let save = UIAlertAction(title: "Сохранить", style: .default) { [weak alert, weak self] _ in
             if let self,
-               let name = alert?.textFields?[0].text,
-               let phone = alert?.textFields?[1].text,
-               let address = alert?.textFields?[2].text,
-               let room = selectedLivingRoom
+               let count = Int(alert?.textFields?.first?.text ?? "0")
             {
-                let newClient = ClientRequest(fullName: name, phoneNumber: phone, address: address, livingRoomId: room.id)
-                self.clientService.updateClient(clientId: client.id ,client: newClient, completion: { [weak self] result in
+                let newCp = ClientProcedureRequest(clientId: client!.id, procedureId: cp.procedure.id, count: count)
+                self.service.updateClientProcedure(clientId: client!.id,procId: cp.procedure.id, client: newCp, completion: { [weak self] result in
                     guard let self else { return }
                     switch result {
                     case .success( _):
-                        selectedLivingRoom = nil
                         isEnd = false
                     case .failure(let error):
                         print(error.localizedDescription)
@@ -229,11 +165,11 @@ private extension ClientViewController {
         let delete = UIAlertAction(title: "Удалить", style: .default) { [weak self] _ in
             if let self
             {
-                self.clientService.deleteClient(clientId: client.id, completion: { [weak self] result in
+                self.service.deleteClientProcedure(clientId: cp.client.id, procId: cp.procedure.id, completion: { [weak self] result in
                     guard let self else { return }
                     switch result {
                     case .success( _):
-                        selectedLivingRoom = nil
+                        selectedProcedure = nil
                         isEnd = false
                     case .failure(let error):
                         print(error.localizedDescription)
@@ -256,24 +192,14 @@ private extension ClientViewController {
     func addSubviews(){
         view.addSubview(tableView)
         view.addSubview(addButton)
-        view.addSubview(searchButton)
-        view.addSubview(nameTextField)
     }
     
     func activateConstraints(){
         NSLayoutConstraint.activate([
-            nameTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            nameTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            nameTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            nameTextField.heightAnchor.constraint(equalToConstant: 44),
-            addButton.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20),
-            addButton.trailingAnchor.constraint(equalTo: searchButton.leadingAnchor, constant: -20),
+            addButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            addButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             addButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             addButton.heightAnchor.constraint(equalToConstant: 44),
-            searchButton.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20),
-            searchButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            addButton.widthAnchor.constraint(equalTo: searchButton.widthAnchor, multiplier: 1),
-            searchButton.heightAnchor.constraint(equalToConstant: 44),
             tableView.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 20),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -289,32 +215,23 @@ private extension ClientViewController {
     }
     
     func registerCell() {
-        tableView.register(ClientViewCell.self, forCellReuseIdentifier: ClientViewCell.reuseIdentifier)
+        tableView.register(ClientProcedureViewCell.self, forCellReuseIdentifier: ClientProcedureViewCell.reuseIdentifier)
     }
     
 }
 
 
 //MARK: - UITableViewDelegate
-extension ClientViewController: UITableViewDelegate {
+extension ClientProcedureViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        updateCLient(client: cellDataSource[indexPath.row])
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-
-        if offsetY > contentHeight - scrollView.frame.height && !inLoad && !isEnd{
-            getClient()
-        }
+        updateCLient(cp: cellDataSource[indexPath.row])
     }
     
 }
 
 //MARK: - UITableViewDataSource
-extension ClientViewController: UITableViewDataSource {
+extension ClientProcedureViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -322,26 +239,21 @@ extension ClientViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ClientViewCell.reuseIdentifier, for: indexPath) as? ClientViewCell else { return UITableViewCell() }
-            let client = cellDataSource[indexPath.row]
-        cell.setupCell(client: client)
-        cell.visitsButtonAction = { [weak self] in
-            guard let self else { return }
-            let vc = ClientProcedureViewController()
-            vc.client = client
-            self.present(vc, animated: true)
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ClientProcedureViewCell.reuseIdentifier, for: indexPath) as? ClientProcedureViewCell else { return UITableViewCell() }
+            let cp = cellDataSource[indexPath.row]
+        cell.setupCell(cp: cp)
         return cell
     }
     
 }
 
 
-extension ClientViewController: SelectLivingRoomDelegate {
+extension ClientProcedureViewController: SelectProcedureDelegate {
     
-    func setLivingRoom(_ room: LivingRoomResponse) {
-        selectedLivingRoom = room
-        currentAlert?.textFields?.last?.text = "Номер: \(room.number)"
+    func selectProcedure(_ proc: ProcedureResponse) {
+        selectedProcedure = proc
+        currentAlert?.textFields?.last?.text = "\(proc.name)"
     }
     
 }
+

@@ -5,6 +5,10 @@ final class TabBarController: UITabBarController {
     
     
     let livingRoomViewController = LivingRoomViewController()
+    let clientViewController = ClientViewController()
+    let staffViewController = StaffViewController()
+    let procedureRoomViewController = ProcedureRoomViewController()
+    let procedureViewController = ProcedureViewController()
     //MARK: - Initializers
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -35,7 +39,11 @@ final class TabBarController: UITabBarController {
 //        setViewControllers([departmentViewController, doctorViewController, patientNavControlelr, serviceViewController, visitNavController], animated: true)
         
         livingRoomViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "lamp.floor"), selectedImage: nil)
-        setViewControllers([livingRoomViewController], animated: true)
+        clientViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "figure.pool.swim"), selectedImage: nil)
+        staffViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "stethoscope"), selectedImage: nil)
+        procedureRoomViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "bed.double"), selectedImage: nil)
+        procedureViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "medical.thermometer"), selectedImage: nil)
+        setViewControllers([livingRoomViewController, clientViewController, staffViewController, procedureRoomViewController, procedureViewController], animated: true)
     }
     
     private func setApperance() {

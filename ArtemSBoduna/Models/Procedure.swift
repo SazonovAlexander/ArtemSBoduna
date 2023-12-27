@@ -14,6 +14,6 @@ struct ProcedureResponse: Codable {
 
 struct ProcedureRequest: Codable {
     let name: String
-    let price, staffID, procedureRoomID: Int
+    let price, staffId, procedureRoomId: Int
 
 }

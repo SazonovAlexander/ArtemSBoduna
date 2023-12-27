@@ -1,17 +1,17 @@
 import Foundation
 
-
-final class ClientService {
+    
+final class StaffService {
     private let urlSession = URLSession.shared
     private var lastTask: URLSessionTask?
     
-    func fetchAllClient(page: Int, count: Int, param: String, completion: @escaping (Result<[ClientResponse], Error>) -> Void) {
+    func fetchAllStaff(page: Int, count: Int, param: String, completion: @escaping (Result<[StaffResponse], Error>) -> Void) {
         lastTask?.cancel()
-        let request = allClientRequest(page: page, count: count, fullName: param)
-        let task = urlSession.objectTask(for: request, completion: { (result: Result<[ClientResponse], Error>) in
+        let request = allStaffRequest(page: page, count: count, fullName: param)
+        let task = urlSession.objectTask(for: request, completion: { (result: Result<[StaffResponse], Error>) in
             switch result {
-            case .success(let client):
-                completion(.success(client))
+            case .success(let staffs):
+                completion(.success(staffs))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -20,13 +20,13 @@ final class ClientService {
         task.resume()
     }
     
-    func updateClient(clientId: Int, client: ClientRequest, completion: @escaping (Result<ClientResponse, Error>) -> Void) {
+    func updateStaff(StaffId: Int, Staff: StaffRequest, completion: @escaping (Result<StaffResponse, Error>) -> Void) {
         lastTask?.cancel()
-        let request = updateClientRequest(clientId: clientId, client: client)
-        let task = urlSession.objectTask(for: request, completion: { (result: Result<ClientResponse, Error>) in
+        let request = updateStaffRequest(StaffId: StaffId, Staff: Staff)
+        let task = urlSession.objectTask(for: request, completion: { (result: Result<StaffResponse, Error>) in
             switch result {
-            case .success(let client):
-                completion(.success(client))
+            case .success(let staffs):
+                completion(.success(staffs))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -35,13 +35,13 @@ final class ClientService {
         task.resume()
     }
     
-    func addClient(client: ClientRequest, completion: @escaping (Result<ClientResponse, Error>) -> Void) {
+    func addStaff(Staff: StaffRequest, completion: @escaping (Result<StaffResponse, Error>) -> Void) {
         lastTask?.cancel()
-        let request = addClientRequest(client: client)
-        let task = urlSession.objectTask(for: request, completion: { (result: Result<ClientResponse, Error>) in
+        let request = addStaffRequest(Staff: Staff)
+        let task = urlSession.objectTask(for: request, completion: { (result: Result<StaffResponse, Error>) in
             switch result {
-            case .success(let client):
-                completion(.success(client))
+            case .success(let staff):
+                completion(.success(staff))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -50,9 +50,9 @@ final class ClientService {
         task.resume()
     }
     
-    func deleteClient(clientId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
+    func deleteStaff(StaffId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
         lastTask?.cancel()
-        let request = deleteClientRequest(clientId: clientId)
+        let request = deleteStaffRequest(StaffId: StaffId)
         let task = urlSession.completeTask(for: request, completion: { (result: Result<Bool, Error>) in
             switch result {
             case .success(let complete):
@@ -67,10 +67,10 @@ final class ClientService {
     
 }
 
-private extension ClientService {
+private extension StaffService {
     
-    func allClientRequest(page: Int, count: Int, fullName: String) -> URLRequest {
-        var path = "/clients"
+    func allStaffRequest(page: Int, count: Int, fullName: String) -> URLRequest {
+        var path = "/staffs"
         if fullName != "" {
             path += "/find?fullName=\(fullName)&"
         }
@@ -86,40 +86,41 @@ private extension ClientService {
         return request
     }
     
-    func updateClientRequest(clientId: Int ,client: ClientRequest) -> URLRequest {
+    func updateStaffRequest(StaffId: Int ,Staff: StaffRequest) -> URLRequest {
         var request = URLRequest.makeHTTPRequest(
-            path: "/clients/\(clientId)",
+            path: "/staffs/\(StaffId)",
             httpMethod: "PUT",
             baseURL: DefaultBaseURL
         )
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        if let jsonData = try? JSONEncoder().encode(client) {
+        if let jsonData = try? JSONEncoder().encode(Staff) {
             request.httpBody = jsonData
         }
         return request
     }
     
-    func addClientRequest(client: ClientRequest) -> URLRequest {
+    func addStaffRequest(Staff: StaffRequest) -> URLRequest {
         var request = URLRequest.makeHTTPRequest(
-            path: "/clients",
+            path: "/staffs",
             httpMethod: "POST",
             baseURL: DefaultBaseURL
         )
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        if let jsonData = try? JSONEncoder().encode(client) {
+        if let jsonData = try? JSONEncoder().encode(Staff) {
             request.httpBody = jsonData
         }
         return request
     }
     
-    func deleteClientRequest(clientId: Int) -> URLRequest {
+    func deleteStaffRequest(StaffId: Int) -> URLRequest {
         let request = URLRequest.makeHTTPRequest(
-            path: "/clients/\(clientId)",
+            path: "/staffs/\(StaffId)",
             httpMethod: "DELETE",
             baseURL: DefaultBaseURL
         )
         return request
     }
     
-    
+
 }
+

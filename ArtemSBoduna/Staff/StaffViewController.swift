@@ -1,7 +1,6 @@
 import UIKit
 
-
-final class ClientViewController: UIViewController {
+final class StaffViewController: UIViewController {
     //MARK: - Private Properties
     
     private let nameTextField: UITextField = {
@@ -50,19 +49,17 @@ final class ClientViewController: UIViewController {
         return tableView
     }()
     
-    var cellDataSource: [ClientResponse] = []
-    private let clientService = ClientService()
-    private var selectedLivingRoom: LivingRoomResponse?
+    var cellDataSource: [StaffResponse] = []
+    private let staffService = StaffService()
     private var currentPage = 0
     private let itemsPerPage = 20
-    private var currentAlert: UIAlertController?
     private var inLoad = false
     private var isEnd = false {
         didSet {
             if isEnd == false {
                 currentPage = 0
                 cellDataSource = []
-                getClient()
+                getStaff()
             }
         }
     }
@@ -77,14 +74,14 @@ final class ClientViewController: UIViewController {
 
 
 //MARK: - Private Methods
-private extension ClientViewController {
+private extension StaffViewController {
     
     func setupView() {
         view.backgroundColor = .darkGray
         setupTableView()
         addSubviews()
         activateConstraints()
-        getClient()
+        getStaff()
         addAction()
     }
     
@@ -95,81 +92,62 @@ private extension ClientViewController {
     
     @objc
     func searchWithFilter() {
-        
         isEnd = false
-    }
-    
-    @objc
-    func openSelect() {
-        let vc = SelectLivingRoomViewController()
-        vc.delegate = self
-        currentAlert?.present(vc, animated: true)
     }
     
     
     @objc
     func didTapAddButton() {
-        let alert = UIAlertController(title: "Клиент", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Работник", message: nil, preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.placeholder = "ФИО"
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Номер телефона"
         }
-        alert.addTextField { (textField) in
-            textField.placeholder = "Адрес"
-        }
-        alert.addTextField { (textField) in
-            textField.placeholder = "Комната"
-            textField.addTarget(self, action: #selector(Self.openSelect), for: .editingDidBegin)
-        }
-        let save = UIAlertAction(title: "Сохранить", style: .default) { [weak alert, weak self] _ in
-            if let self,
-               let name = alert?.textFields?[0].text,
-               let phone = alert?.textFields?[1].text,
-               let address = alert?.textFields?[2].text,
-               let room = selectedLivingRoom
-            {
-                let client = ClientRequest(fullName: name, phoneNumber: phone, address: address, livingRoomId: room.id)
-                self.clientService.addClient(client: client, completion: { [weak self] result in
-                    guard let self else { return }
-                    switch result {
-                    case .success( _):
-                        selectedLivingRoom = nil
-                        isEnd = false
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                        let alert = UIAlertController(title: "Что-то пошло не так(", message: error.localizedDescription, preferredStyle: .alert)
-                        let alertAction = UIAlertAction(title: "OK", style: .default)
-                        alert.addAction(alertAction)
-                        self.present(alert, animated: true)
-                    }
-                })
+            let save = UIAlertAction(title: "Сохранить", style: .default) { [weak alert, weak self] _ in
+                if let self,
+                   let name = alert?.textFields?[0].text,
+                   let phone = alert?.textFields?[1].text
+                {
+                    let staff = StaffRequest(fullName: name, phoneNumber: phone)
+                    self.staffService.addStaff(Staff: staff, completion: { [weak self] result in
+                        guard let self else { return }
+                        switch result {
+                        case .success( _):
+                            isEnd = false
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                            let alert = UIAlertController(title: "Что-то пошло не так(", message: error.localizedDescription, preferredStyle: .alert)
+                            let alertAction = UIAlertAction(title: "OK", style: .default)
+                            alert.addAction(alertAction)
+                            self.present(alert, animated: true)
+                        }
+                    })
+                }
             }
+            alert.addAction(save)
+            let cancel = UIAlertAction(title: "Отмена", style: .cancel)
+            alert.addAction(cancel)
+            self.present(alert, animated: true)
         }
-        alert.addAction(save)
-        let cancel = UIAlertAction(title: "Отмена", style: .cancel)
-        alert.addAction(cancel)
-        currentAlert = alert
-        self.present(alert, animated: true)
-    }
     
-    func getClient() {
+    func getStaff() {
         inLoad.toggle()
-        clientService.fetchAllClient(page: currentPage, count: itemsPerPage, param: nameTextField.text ?? "", completion: { [weak self] result in
+        staffService.fetchAllStaff(page: currentPage, count: itemsPerPage, param: nameTextField.text ?? "", completion: { [weak self] result in
             guard let self else { return }
             switch result {
-            case .success(let clients):
-                if clients.isEmpty {
+            case .success(let staff):
+                print(staff)
+                if !staff.isEmpty {
                     currentPage += 1
                 }
                 else {
                     isEnd = true
                 }
-                self.cellDataSource.append(contentsOf: clients)
+                self.cellDataSource.append(contentsOf: staff)
                 inLoad.toggle()
                 self.tableView.reloadData()
-                
             case .failure(let error):
                 print(error.localizedDescription)
                 inLoad.toggle()
@@ -181,39 +159,27 @@ private extension ClientViewController {
         })
     }
     
-    func updateCLient(client: ClientResponse) {
-        selectedLivingRoom = client.livingRoom
-        let alert = UIAlertController(title: "Клиент", message: nil, preferredStyle: .alert)
+    func updateStaff(staff: StaffResponse){
+        let alert = UIAlertController(title: "Работник", message: nil, preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.placeholder = "ФИО"
-            textField.text = client.fullName
+            textField.text = staff.fullName
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Номер телефона"
-            textField.text = client.phoneNumber
+            textField.text = staff.phoneNumber
         }
-        alert.addTextField { (textField) in
-            textField.placeholder = "Адрес"
-            textField.text = client.address
-        }
-        alert.addTextField { (textField) in
-            textField.placeholder = "Комната"
-            textField.addTarget(self, action: #selector(Self.openSelect), for: .editingDidBegin)
-            textField.text = "Номер: \(client.livingRoom.number)"
-        }
+        
         let save = UIAlertAction(title: "Сохранить", style: .default) { [weak alert, weak self] _ in
             if let self,
                let name = alert?.textFields?[0].text,
-               let phone = alert?.textFields?[1].text,
-               let address = alert?.textFields?[2].text,
-               let room = selectedLivingRoom
+               let phone = alert?.textFields?[1].text
             {
-                let newClient = ClientRequest(fullName: name, phoneNumber: phone, address: address, livingRoomId: room.id)
-                self.clientService.updateClient(clientId: client.id ,client: newClient, completion: { [weak self] result in
+                let newStaff = StaffRequest(fullName: name, phoneNumber: phone)
+                self.staffService.updateStaff(StaffId: staff.id, Staff: newStaff, completion: { [weak self] result in
                     guard let self else { return }
                     switch result {
                     case .success( _):
-                        selectedLivingRoom = nil
                         isEnd = false
                     case .failure(let error):
                         print(error.localizedDescription)
@@ -229,11 +195,10 @@ private extension ClientViewController {
         let delete = UIAlertAction(title: "Удалить", style: .default) { [weak self] _ in
             if let self
             {
-                self.clientService.deleteClient(clientId: client.id, completion: { [weak self] result in
+                self.staffService.deleteStaff(StaffId: staff.id,  completion: { [weak self] result in
                     guard let self else { return }
                     switch result {
                     case .success( _):
-                        selectedLivingRoom = nil
                         isEnd = false
                     case .failure(let error):
                         print(error.localizedDescription)
@@ -248,7 +213,6 @@ private extension ClientViewController {
         alert.addAction(delete)
         let cancel = UIAlertAction(title: "Отмена", style: .cancel)
         alert.addAction(cancel)
-        currentAlert = alert
         self.present(alert, animated: true)
     }
     
@@ -289,17 +253,17 @@ private extension ClientViewController {
     }
     
     func registerCell() {
-        tableView.register(ClientViewCell.self, forCellReuseIdentifier: ClientViewCell.reuseIdentifier)
+        tableView.register(StaffViewCell.self, forCellReuseIdentifier: StaffViewCell.reuseIdentifier)
     }
     
 }
 
 
 //MARK: - UITableViewDelegate
-extension ClientViewController: UITableViewDelegate {
+extension StaffViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        updateCLient(client: cellDataSource[indexPath.row])
+        updateStaff(staff: cellDataSource[indexPath.row])
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -307,14 +271,15 @@ extension ClientViewController: UITableViewDelegate {
         let contentHeight = scrollView.contentSize.height
 
         if offsetY > contentHeight - scrollView.frame.height && !inLoad && !isEnd{
-            getClient()
+            
+            getStaff()
         }
     }
     
 }
 
 //MARK: - UITableViewDataSource
-extension ClientViewController: UITableViewDataSource {
+extension StaffViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -322,26 +287,11 @@ extension ClientViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ClientViewCell.reuseIdentifier, for: indexPath) as? ClientViewCell else { return UITableViewCell() }
-            let client = cellDataSource[indexPath.row]
-        cell.setupCell(client: client)
-        cell.visitsButtonAction = { [weak self] in
-            guard let self else { return }
-            let vc = ClientProcedureViewController()
-            vc.client = client
-            self.present(vc, animated: true)
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: StaffViewCell.reuseIdentifier, for: indexPath) as? StaffViewCell else { return UITableViewCell() }
+            let staff = cellDataSource[indexPath.row]
+        cell.setupCell(staff: staff)
         return cell
     }
     
 }
 
-
-extension ClientViewController: SelectLivingRoomDelegate {
-    
-    func setLivingRoom(_ room: LivingRoomResponse) {
-        selectedLivingRoom = room
-        currentAlert?.textFields?.last?.text = "Номер: \(room.number)"
-    }
-    
-}

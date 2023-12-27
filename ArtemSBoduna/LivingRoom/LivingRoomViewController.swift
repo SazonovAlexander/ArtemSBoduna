@@ -15,7 +15,10 @@ final class LivingRoomViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Добавить", for: .normal)
-        button.tintColor = .white
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 20
+        button.layer.masksToBounds = true
         return button
     }()
     
@@ -25,8 +28,7 @@ final class LivingRoomViewController: UIViewController {
         tableView.layer.masksToBounds = true
         tableView.clipsToBounds = true
         tableView.layer.cornerRadius = 20
-        tableView.layer.borderColor = UIColor.black.cgColor
-        tableView.layer.borderWidth = 3
+        tableView.separatorColor = .black
         return tableView
     }()
     
@@ -111,6 +113,8 @@ private extension LivingRoomViewController {
             }
         }
         alert.addAction(save)
+        let cancel = UIAlertAction(title: "Отмена", style: .cancel)
+        alert.addAction(cancel)
         self.present(alert, animated: true)
     }
     
@@ -209,8 +213,8 @@ private extension LivingRoomViewController {
     func activateConstraints(){
         NSLayoutConstraint.activate([
             segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            segmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            segmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             addButton.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20),
             addButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             addButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),

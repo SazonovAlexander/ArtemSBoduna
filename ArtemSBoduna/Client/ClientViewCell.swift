@@ -13,6 +13,23 @@ final class ClientViewCell: UITableViewCell {
         return label
     }()
     
+    let visitsButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "medical.thermometer"), for: .normal)
+        button.tintColor = .black
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    
+    var visitsButtonAction: (() -> Void)?
+    
+  
+    
+    @objc
+    private func didTapvisitsButton() {
+        visitsButtonAction?()
+    }
     
     //MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -39,15 +56,19 @@ final class ClientViewCell: UITableViewCell {
         selectionStyle = .none
         backgroundColor = .white
         
-        
-        addSubview(descriptionLabel)
+        contentView.addSubview(descriptionLabel)
+        contentView.addSubview(visitsButton)
+        visitsButton.addTarget(self, action: #selector(didTapvisitsButton), for: .touchUpInside)
         
 
         NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+            descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            descriptionLabel.trailingAnchor.constraint(equalTo: visitsButton.leadingAnchor, constant: 10),
+            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            visitsButton.widthAnchor.constraint(equalToConstant: 44),
+            visitsButton.centerYAnchor.constraint(equalTo: descriptionLabel.centerYAnchor),
+            visitsButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         ])
         
     }

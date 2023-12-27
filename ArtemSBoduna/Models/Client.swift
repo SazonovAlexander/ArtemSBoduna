@@ -2,7 +2,7 @@ import Foundation
 
 struct ClientRequest: Codable {
     let fullName, phoneNumber, address: String
-    let livingRoomID: Int
+    let livingRoomId: Int
 
 
 }
